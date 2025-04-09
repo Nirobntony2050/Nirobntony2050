@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JNG FF Top-Up Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #121212; color: #fff; padding: 20px; }
+    header { text-align: center; margin-bottom: 40px; }
+    header h1 { font-size: 2.5rem; color: #ff4444; }
+    .form-container {
+      max-width: 500px; margin: auto;
+      background: #1e1e1e; padding: 30px;
+      border-radius: 15px; box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+    }
+    label { display: block; margin-top: 20px; margin-bottom: 5px; }
+    input, select {
+      width: 100%; padding: 12px; border: none;
+      border-radius: 8px; background: #2c2c2c;
+      color: #fff; font-size: 1rem;
+    }
+    button {
+      margin-top: 30px; width: 100%; padding: 14px;
+      background: #ff4444; border: none; border-radius: 8px;
+      color: white; font-weight: bold; font-size: 1.1rem; cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover { background: #ff2222; }
+    footer { text-align: center; margin-top: 50px; font-size: 0.9rem; color: #aaa; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JNG FF Top-Up Site</h1>
+    <p>Fast & Secure Free Fire Diamond Top-Up</p>
+  </header>
+
+  <div class="form-container">
+    <form id="topupForm" action="https://script.google.com/macros/s/AKfycbyngzMI9aH5azJZva326dPcGqaG4bwX5wMefaRcUYvQHPEfqSpBB7MpvJiq6MCaWg74fw/exec" method="POST">
+      <label for="UID">Free Fire UID</label>
+      <input type="text" id="UID" name="UID" required>
+
+      <label for="Package">Diamond Package</label>
+      <select id="Package" name="Package">
+        <option value="100">100 Diamonds</option>
+        <option value="210">210 Diamonds</option>
+        <option value="530">530 Diamonds</option>
+        <option value="1080">1080 Diamonds</option>
+      </select>
+
+      <label for="bKash">bKash Number</label>
+      <input type="text" id="bKash" name="bKash Number" required>
+
+      <label for="trxid">Transaction ID</label>
+      <input type="text" id="trxid" name="Transaction ID" required>
+
+      <button type="submit">Submit Top-Up</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 JNG FF. All rights reserved.
+  </footer>
+
+  <script>
+    const form = document.getElementById('topupForm');
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      if (result.result === 'success') {
+        window.location.href = 'thankyou.html';
+      } else {
+        alert('Submission failed. Try again.');
+      }
+    });
+  </script>
+</body>
+</html>
